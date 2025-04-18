@@ -13,6 +13,7 @@
 
 # sync testing
 /sync-test
+temp.json
 
 # misc
 .DS_Store
