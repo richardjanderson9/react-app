@@ -1,0 +1,22 @@
+/*
+  Path: src/assets/css/index.css.
+  Description: Global styles for the React application.
+  Author: Richard Anderson.
+  Last Updated: 05-June-2025.
+  Version: 1.0.0.
+  Note: This file contains both AI-generated (Copilot -- Claude 3.7) and manually added comments for code clarity.
+*/
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}

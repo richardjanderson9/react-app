@@ -1,0 +1,74 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+**/__tests__/*
+**/*.test.*
+**/*.spec.*
+!src/**/*.test.js
+!src/**/*.spec.js
+**/test/*
+**/tests/*
+!src/test
+!src/tests
+
+# production
+/build
+
+# sync testing
+/sync-test
+temp.json
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Azure specific
+.azure/
+.vscode/settings.json
+local.settings.json
+appsettings.*.json
+*.publishsettings
+PublishProfiles/
+*.pubxml
+azureauth.json
+azure-pipelines*.yml
+
+# AWS specific
+.aws/
+aws-config.json
+aws-credentials.json
+.elasticbeanstalk/
+.ebextensions/
+.ebignore
+aws-eb.json
+serverless.yml
+cloudformation.yml
+sam.yml
+*.pem
+credentials.csv
+accessKeys.csv
+
+# Environment variables
+.env
+.env.azure.*
+.env.aws.*
+.env.production.azure
+.env.production.aws
+.env.development.azure
+.env.development.aws
+.env.staging.azure
+.env.staging.aws
