@@ -1,0 +1,36 @@
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [0.1.0-alpha] - 2025-06-05
+
+### Added
+- Initial project setup with Create React App
+- Basic React application structure
+- Custom file organization for assets (css, js, media)
+- Performance monitoring with Web Vitals
+- Basic component structure with App.js
+- Testing configuration with Jest and Testing Library
+- Version display from package.json
+- Loading and error states in App component
+
+### Changed
+- Moved static assets to organized directory structure
+- Enhanced documentation and code comments
+- Improved project organization
+
+### Dependencies
+- React ^19.1.0
+- React DOM ^19.1.0
+- Web Vitals ^5.0.2
+- Testing Library React ^16.3.0
+
+### Requirements
+- Node >= 22.16.0
+- NPM >= 10.9.2
+
+## [0.0.0] - 2025-06-04
+- Initial commit
