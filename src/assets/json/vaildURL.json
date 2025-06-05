@@ -1,0 +1,5 @@
+{
+    "correctURL": "https://www.example.com",
+    "enableRedirect": true,
+    "isTestEnvironment": false
+}

@@ -5,6 +5,28 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.0] - 2025-06-05
+
+### Added
+- Browser compatibility checking feature
+- UI component separation (moved UI logic to userInterface.js)
+- GitHub repository integration in the UI
+- JSON configuration for valid URLs
+- Code linting and formatting tools
+- Git hooks with Husky
+- Security policy documentation
+- Comprehensive project configuration
+
+### Changed
+- Improved component architecture with separation of concerns
+- Enhanced repository configuration in package.json
+- Updated from alpha to stable release
+- Reorganized file structure for better maintainability
+
+### Fixed
+- Improved error handling for missing repository URLs
+- Added fallbacks for unavailable package.json values
+
 ## [0.1.0-alpha] - 2025-06-05
 
 ### Added

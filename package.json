@@ -1,6 +1,6 @@
 {
   "name": "react-app",
-  "version": "0.1.0-alpha",
+  "version": "0.2.0",
   "private": true,
   "description": "A simple React application.",
   "author": {
@@ -46,8 +46,9 @@
     ]
   },
   "repository": {
-    "type": "git",
-    "url": "git+https://github.com/richardjanderson9/react-app.git"
+    "type": "url",
+    "url": "https://github.com/richardjanderson9/react-app/",
+    "url2": "https://github.com/richardjanderson9/react-app/"
   },
   "bugs": {
     "url": "https://github.com/richardjanderson9/react-app/issues"
@@ -55,7 +56,8 @@
   "homepage": "http://localhost:3000",
   "devDependencies": {
     "eslint-config-react-app": "^7.0.1",
-    "husky": "^8.0.3"
+    "husky": "^8.0.3",
+    "webpack-dev-server": "^5.2.2"
   },
   "engines": {
     "node": ">=22.16.0",
@@ -65,8 +67,7 @@
     "nth-check": "^2.1.1",
     "postcss": "^8.4.31",
     "serialize-javascript": "^6.0.2",
-    "inflight": "^1.0.6",
-    "webpack-dev-server": "^5.2.2"
+    "inflight": "^1.0.6"
   },
   "prettier": {
     "semi": true,
