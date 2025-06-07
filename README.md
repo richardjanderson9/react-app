@@ -1,6 +1,6 @@
 # React App
 
-A simple React application created with Create React App.
+A modern React application built with Vite.
 
 ## Installation
 
