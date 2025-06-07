@@ -1,6 +1,6 @@
 {
   "name": "react-app",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "private": true,
   "description": "A simple React application.",
   "author": {
@@ -20,9 +20,9 @@
     "preview": "vite preview",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
-    "lint": "eslint src/**/*.js",
-    "lint:fix": "eslint src/**/*.js --fix",
-    "format": "prettier --write src/**/*.{js,css,json,md}",
+    "lint": "eslint src/**/*.jsx",
+    "lint:fix": "eslint src/**/*.jsx --fix",
+    "format": "prettier --write src/**/*.{jsx,css,json,md}",
     "prepare": "husky install",
     "postinstall": "husky install"
   },
@@ -43,7 +43,7 @@
     "vitest": "^3.2.2"
   },
   "engines": {
-    "node": ">=22.16.0",
+    "node": ">=22.15.0",
     "npm": ">=10.9.2"
   },
   "overrides": {
