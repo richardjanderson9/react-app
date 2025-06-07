@@ -1,6 +1,6 @@
 {
   "name": "react-app",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "private": true,
   "description": "A simple React application.",
   "author": {
@@ -12,38 +12,19 @@
     "@testing-library/react": "^16.3.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "react-scripts": "^5.0.1",
     "web-vitals": "^5.0.2"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "test:coverage": "react-scripts test --coverage --watchAll=false",
-    "eject": "react-scripts eject",
+    "start": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
     "lint": "eslint src/**/*.js",
     "lint:fix": "eslint src/**/*.js --fix",
     "format": "prettier --write src/**/*.{js,css,json,md}",
     "prepare": "husky install",
     "postinstall": "husky install"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
   },
   "repository": {
     "type": "url",
@@ -55,8 +36,11 @@
   },
   "homepage": "http://localhost:3000",
   "devDependencies": {
+    "@vitejs/plugin-react": "^4.5.1",
     "eslint-config-react-app": "^7.0.1",
-    "husky": "^8.0.3"
+    "husky": "^9.1.7",
+    "vite": "^6.3.5",
+    "vitest": "^3.2.2"
   },
   "engines": {
     "node": ">=22.16.0",
@@ -66,8 +50,7 @@
     "nth-check": "^2.1.1",
     "postcss": "^8.4.31",
     "serialize-javascript": "^6.0.2",
-    "inflight": "^1.0.6",
-    "webpack-dev-server": "^5.2.2"
+    "inflight": "^1.0.6"
   },
   "prettier": {
     "semi": true,

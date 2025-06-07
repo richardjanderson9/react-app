@@ -1,5 +1,6 @@
 {
     "correctURL": "richardjanderson.uk",
     "subdomain" : true,
-    "enableRedirect": true
+    "enableRedirect": true,
+    "version": "1.0.0"
 }

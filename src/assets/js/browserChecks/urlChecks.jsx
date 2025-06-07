@@ -1,8 +1,8 @@
 /**
  * Browser compatibility and environment checks
  * Author: Richard Anderson
- * Last Updated: 05-June-2025
- * Version: 1.0.0
+ * Last Updated: 07-June-2025
+ * Version: 1.0.1
  */
 
 // Import the configuration from JSON file
@@ -20,14 +20,18 @@ const urlChecks = () => {
   // Check if domain is valid
   let isDomainValid = false;
   
+  // Check if we're in development mode
+  const isDevelopment = process.env.NODE_ENV === 'development';
+  
   if (currentDomain === correctURL) {
     // Exact match
     isDomainValid = true;
   } else if (allowSubdomains && currentDomain.endsWith(`.${correctURL}`)) {
     // Subdomain check if enabled
     isDomainValid = true;
-  } else if (currentDomain === 'localhost') {
-    // Always allow localhost for development
+  } else if (currentDomain === 'localhost' || currentDomain === '0.0.0.0' || 
+             currentDomain.match(/^\d+\.\d+\.\d+\.\d+$/) || isDevelopment) {
+    // Allow localhost, IP addresses, and any domain in development
     isDomainValid = true;
   }
 
@@ -36,8 +40,8 @@ const urlChecks = () => {
     // Log a warning if the domain is unauthorized
     console.warn(`Unauthorized domain: ${currentDomain}`);
     
-    // Redirect if enabled in config
-    if (enableRedirect) {
+    // Only redirect in production
+    if (enableRedirect && !isDevelopment) {
       window.location.href = `https://${correctURL}`;
     }
   } else {

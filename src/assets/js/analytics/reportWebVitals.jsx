@@ -1,9 +1,9 @@
 /*
-  Path: src/assets/js/reportWebVitals.js.
+  Path: src/assets/js/analytics/reportWebVitals.jsx
   Description: Performance monitoring utility for React application.
   Author: Richard Anderson.
-  Last Updated: 05-June-2025.
-  Version: 1.0.1.
+  Last Updated: 07-June-2025.
+  Version: 1.0.2.
   Note: This file contains both AI-generated (Copilot -- Claude 3.7) and manually added comments for code clarity.
 */
 

@@ -32,16 +32,33 @@ npm run build
 react-app/
 │
 ├── src/
-│   ├── assets/
-│   │   ├── css/
-│   │   ├── js/
-│   │   ├── json/
-│   │   └── media/
-│   ├── App.js
-│   └── index.js
+│   ├── app.jsx
+│   ├── index.jsx
+│   └── assets/
+│       ├── css/
+│       │   ├── index.css
+│       │   └── userInterface.css
+│       ├── js/
+│       │   ├── analytics/
+│       │   │   ├── reportWebVitals.jsx
+│       │   │   └── setupTests.jsx
+│       │   ├── browserChecks/
+│       │   │   └── urlChecks.jsx
+│       │   ├── browserChecks.jsx
+│       │   └── userInterface.jsx
+│       ├── json/
+│       │   └── vaildURL.json
+│       ├── media/
+│       │   └── logo.svg
+│       └── testing/
+│           └── blank.test
 │
 └── public/
-    └── index.html
+    ├── favicon.ico
+    ├── logo192.png
+    ├── logo512.png
+    ├── manifest.json
+    └── robots.txt
 ```
 
 ## Security

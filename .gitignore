@@ -72,3 +72,4 @@ accessKeys.csv
 .env.development.aws
 .env.staging.azure
 .env.staging.aws
+.npmcheckrc

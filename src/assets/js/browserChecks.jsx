@@ -1,13 +1,13 @@
 /*
-  Path: src/assets/js/browserChecks.js
+  Path: src/assets/js/browserChecks.jsx
   Description: UI components separated from main App logic.
   Author: Richard Anderson
-  Last Updated: 05-June-2025
-  Version: 1.0.2
+  Last Updated: 07-June-2025
+  Version: 1.0.3
 */
 
 // Assets Import! (Custom React!).
-import urlChecks from './browserChecks/urlChecks'; // Import URL checks.
+import urlChecks from './browserChecks/urlChecks.jsx'; // Import URL checks.
 
 const browserChecks = () => {
   // Call the URL checks function
