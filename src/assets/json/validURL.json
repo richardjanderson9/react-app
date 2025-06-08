@@ -1,0 +1,12 @@
+{
+  "allowedDomains": [
+    "react.richardjanderson.uk",
+    "localhost",
+    "127.0.0.1"
+  ],
+  "correctURL": "react.richardjanderson.uk",
+  "subdomain": true,
+  "enableRedirect": true,
+  "version": "1.0.0",
+  "isTesting": true
+}

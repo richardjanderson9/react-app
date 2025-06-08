@@ -1,10 +1,11 @@
 {
   "name": "react-app",
-  "version": "0.3.2",
+  "version": "0.3.5",
   "private": true,
   "description": "A simple React application.",
   "author": {
-    "name": "Richard Anderson"
+    "name": "Richard Anderson",
+    "linkedin": "https://www.linkedin.com/in/richardjanderson9"
   },
   "license": "MIT",
   "dependencies": {
@@ -22,14 +23,11 @@
     "test:coverage": "vitest run --coverage",
     "lint": "eslint src/**/*.jsx",
     "lint:fix": "eslint src/**/*.jsx --fix",
-    "format": "prettier --write src/**/*.{jsx,css,json,md}",
-    "prepare": "husky install",
-    "postinstall": "husky install"
+    "format": "prettier --write src/**/*.{jsx,css,json,md}"
   },
   "repository": {
-    "type": "url",
-    "url": "https://github.com/richardjanderson9/react-app/",
-    "url2": "https://github.com/richardjanderson9/react-app/"
+    "type": "git",
+    "url": "https://github.com/username/react-app"
   },
   "bugs": {
     "url": "https://github.com/richardjanderson9/react-app/issues"

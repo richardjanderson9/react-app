@@ -2,8 +2,8 @@
   Path: vite.config.js
   Description: Vite configuration file for a React application.
   Author: Richard Anderson.
-  Last Updated: 07-June-2025.
-  Version: 1.0..
+  Last Updated: 08-June-2025.
+  Version: 1.0.2.
   Note: This file contains both AI-generated (Copilot -- Claude 3.7) and manually added comments for code clarity.
 */
 // Vite Configuration for React Application.
@@ -13,6 +13,7 @@ import { resolve } from 'path';
 
 export default defineConfig({
   plugins: [react()],
+  publicDir: 'public', // Explicitly define the public directory
   server: {
     port: 3000,
     host: '0.0.0.0', // Explicitly bind to IPv4
@@ -36,4 +37,7 @@ export default defineConfig({
       '@': resolve(__dirname, 'src'),
     },
   },
+  define: {
+    'process.env': {} // Remove process.env definition
+  }
 });

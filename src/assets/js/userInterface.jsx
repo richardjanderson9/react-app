@@ -2,8 +2,8 @@
   Path: src/assets/js/userInterface.js.
   Description: UI components separated from main App logic.
   Author: Richard Anderson.
-  Last Updated: 05-June-2025.
-  Version: 1.0.2.
+  Last Updated: 08-June-2025.
+  Version: 1.0.3.
   Note: Contains the UI design moved from App.js
 */
 
@@ -14,7 +14,7 @@ import '../css/userInterface.css'; // Specific UI styles
 import packageJson from '../../../package.json'; // Package JSON Import!.
 
 const UserInterface = () => {
-  const repositoryUrl = packageJson?.repository?.url2;
+  const repositoryUrl = packageJson?.repository?.url;
 
   // Main Render.
   return (
@@ -36,7 +36,7 @@ const UserInterface = () => {
             if (repositoryUrl) {
               window.open(repositoryUrl, "_blank");
             } else {
-              console.error("Cannot open link: Repository URL (packageJson.repository.url2) is not defined or accessible.");
+              console.error("Cannot open link: Repository URL (packageJson.repository.url) is not defined or accessible.");
               alert("GitHub repository URL is not configured correctly. Please check package.json.");
             }
           }}
@@ -46,7 +46,7 @@ const UserInterface = () => {
         </button>
         {!repositoryUrl && (
           <p style={{ color: 'red', marginTop: '10px' }}>
-            Note: GitHub link is disabled because the repository URL (url2) is missing in package.json.
+            Note: GitHub link is disabled because the repository URL (url) is missing in package.json.
           </p>
         )}
       </header>

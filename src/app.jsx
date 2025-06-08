@@ -7,16 +7,18 @@
   Note: This file contains both AI-generated (Copilot -- Claude 3.7) and manually added comments for code clarity.
 */
 
-// Assets Import! (React!).
 import React from 'react';
-
-// Assets Import! (Custom React!).
 import UserInterface from './assets/js/userInterface.jsx';
+import ErrorBoundary from './assets/js/ErrorBoundary.jsx'; // Updated import path
 
 // App Component Definition.
 function App() {
   // Render using the UserInterface component (UI logic moved to userInterface.jsx)
-  return <UserInterface />;
+  return (
+    <ErrorBoundary>
+      <UserInterface />
+    </ErrorBoundary>
+  );
 }
 
 // Export Component.
