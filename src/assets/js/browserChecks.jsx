@@ -8,11 +8,12 @@
 
 // Assets Import! (Custom React!).
 import urlChecks from './browserChecks/urlChecks.jsx'; // Import URL checks.
+import fingerprintCheks from './browserChecks/fingerprintChecks.jsx'; // Import fingerprint checks.
 
 const browserChecks = () => {
   // Call the URL checks function
   const urlCheckResult = urlChecks(); // Perform URL checks to ensure accessable domain is not azure default domain. Forces custom domain usage.
-  
+  const fingerprintCheckResult = fingerprintCheks(); // Perform fingerprint checks to ensure the browser is not a bot or malicious.
   // Other browser compatibility checks can be added here
   // - Browser versions
   // - Required features support

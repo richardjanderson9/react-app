@@ -1,6 +1,6 @@
 {
   "name": "react-app",
-  "version": "0.3.6",
+  "version": "0.3.7",
   "private": true,
   "description": "A simple React application.",
   "author": {
@@ -9,6 +9,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "@fingerprintjs/fingerprintjs": "^4.6.2",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",
     "react": "^19.1.0",
