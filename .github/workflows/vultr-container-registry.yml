@@ -89,8 +89,7 @@ jobs:
           username: ${{ secrets.VULTR_USER }}
           password: ${{ secrets.VULTR_API_KEY }}
 
-      - name: 📤 Push Docker Image
-        if: success()  # Only push if all previous steps succeeded
+      - name: Build and push
         uses: docker/build-push-action@v5
         with:
           context: .
@@ -99,3 +98,11 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
+
+      - name: Build for scanning (single platform)
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          platforms: linux/amd64  # Single platform for scanning
+          push: false
+          outputs: type=docker,dest=/tmp/image.tar
