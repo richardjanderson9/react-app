@@ -51,31 +51,51 @@ jobs:
           fi
         continue-on-error: true
 
-      - name: 🔓 Login to Vultr Registry
-        uses: docker/login-action@v3
-        with:
-          registry: ${{ secrets.VULTR_REGISTRY }}
-          username: ${{ secrets.VULTR_USER }}
-          password: ${{ secrets.VULTR_API_KEY }}
+      - name: 🏗️ Build React App
+        run: |
+          npm ci
+          NODE_ENV=production npm run build
 
       - name: 📋 Generate Image Tags
         id: meta
         run: |
           echo "tags=${{ secrets.VULTR_REGISTRY }}/my-react-app:latest,${{ secrets.VULTR_REGISTRY }}/my-react-app:${GITHUB_SHA::7}" >> $GITHUB_OUTPUT
 
-      - name: 🏗️ Build React App
-        run: |
-          npm ci
-          npm run build
-
-      - name: 🔨 Build and Push Docker Image
+      - name: 🔨 Build Docker Image (without pushing)
         uses: docker/build-push-action@v5
         with:
           context: .
-          platforms: linux/amd64,linux/arm64/v8 # THIS IS THE CRITICAL LINE FOR RASPBERRY PI
+          platforms: linux/amd64,linux/arm64/v8
+          push: false
+          tags: ${{ steps.meta.outputs.tags }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          outputs: type=docker,dest=/tmp/image.tar
+
+      - name: 🔒 Scan Docker image for vulnerabilities
+        uses: aquasecurity/trivy-action@master
+        with:
+          input: /tmp/image.tar
+          format: 'table'
+          exit-code: '1'  # Fail pipeline if vulnerabilities found
+          ignore-unfixed: true
+          severity: 'CRITICAL,HIGH'
+
+      - name: 🔓 Login to Vultr Registry
+        if: success()  # Only login if vulnerability scan passes
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ secrets.VULTR_REGISTRY }}
+          username: ${{ secrets.VULTR_USER }}
+          password: ${{ secrets.VULTR_API_KEY }}
+
+      - name: 📤 Push Docker Image
+        if: success()  # Only push if all previous steps succeeded
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          platforms: linux/amd64,linux/arm64/v8
           push: true
           tags: ${{ steps.meta.outputs.tags }}
-          cache-from: type=gha # Use GitHub Actions cache for Docker layers
-          cache-to: type=gha,mode=max # Save Docker layers to GitHub Actions cache
-
-      # Removed the manual cache move step as type=gha handles it automatically
+          cache-from: type=gha
+          cache-to: type=gha,mode=max

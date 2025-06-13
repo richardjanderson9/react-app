@@ -4,8 +4,9 @@
 
 | Version | Supported          |
 | ------- | ------------------ |
-| 0.3.x   | :white_check_mark: |
-| 0.2.x   | :white_check_mark: |
+| 0.4.x   | :white_check_mark: |
+| 0.3.x   | :x:                |
+| 0.2.x   | :x:                |
 | 0.1.x   | :x:                |
 | < 0.1.0 | :x:                |
 
@@ -20,4 +21,4 @@ This project comes with several security-focused configurations:
 - Strict CSP headers
 - Security-focused ESLint rules
 - NPM audit checks in CI/CD
-- Automated dependency updates via Dependabot
+- Automated dependency updates

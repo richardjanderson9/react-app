@@ -19,6 +19,7 @@
 
 # production
 /build
+/dist
 
 # sync testing
 /sync-test
@@ -62,14 +63,44 @@ sam.yml
 credentials.csv
 accessKeys.csv
 
+# GitHub Actions specific
+.github/.env
+.act
+.actrc
+act-secrets.env
+act-artifact/
+workflow-artifacts/
+.github/act/
+.github-actions-local/
+
+# GCP specific
+.gcp/
+app.yaml
+dispatch.yaml
+cron.yaml
+.gcloudignore
+*-credentials.json
+*-service-account.json
+gcloud-config/
+.firebase/
+firebase-debug.log
+firestore-debug.log
+ui-debug.log
+.firebaserc
+firebase.json
+
 # Environment variables
 .env
 .env.azure.*
 .env.aws.*
+.env.gcp.*
 .env.production.azure
 .env.production.aws
+.env.production.gcp
 .env.development.azure
 .env.development.aws
+.env.development.gcp
 .env.staging.azure
 .env.staging.aws
+.env.staging.gcp
 .npmcheckrc
