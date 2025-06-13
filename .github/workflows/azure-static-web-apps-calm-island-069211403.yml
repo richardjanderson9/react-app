@@ -97,7 +97,13 @@ jobs:
         uses: actions/checkout@v4
 
       - name: 🔨 Build Docker Image
-        run: docker build -t ${{ secrets.VULTR_REGISTRY }}/my-react-app:latest .
+        run: |
+          if [ -f Dockerfile ]; then
+            docker build -t ${{ secrets.VULTR_REGISTRY }}/my-react-app:latest .
+          else
+            echo "::error::Dockerfile not found in repository root"
+            exit 1
+          fi
 
       - name: 🔓 Login to Vultr
         run: docker login -u ${{ secrets.VULTR_USER }} -p ${{ secrets.VULTR_API_KEY }} ${{ secrets.VULTR_REGISTRY }}
