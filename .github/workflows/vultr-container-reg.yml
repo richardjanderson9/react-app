@@ -3,7 +3,7 @@ name: Vultr Container Registry CI
 on:
   push:
     branches:
-      - main
+      - main # or your main branch name
 
 # Prevent multiple deployments running simultaneously
 concurrency:
@@ -21,13 +21,15 @@ jobs:
       - name: 📅 Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: 💾 Cache Docker layers
-        uses: actions/cache@v3
+      # --- Start: Added for Node.js dependency caching ---
+      - name: 📦 Cache Node.js modules
+        uses: actions/cache@v4
         with:
-          path: /tmp/.buildx-cache
-          key: ${{ runner.os }}-buildx-${{ github.sha }}
+          path: ~/.npm # Default npm cache location
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.os }}-buildx-
+            ${{ runner.os }}-node-
+      # --- End: Added for Node.js dependency caching ---
 
       - name: 🔍 Verify Dockerfile exists
         run: |
@@ -39,7 +41,7 @@ jobs:
       - name: 🧪 Run basic checks
         run: |
           if [ -f package.json ]; then
-            npm ci
+            npm ci # Install dependencies using cache from previous step
             npm run lint || echo "Linting issues found"
             npm test || echo "Tests failed but continuing"
           fi
@@ -61,12 +63,10 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
+          platforms: linux/amd64,linux/arm64/v8 # THIS IS THE CRITICAL LINE FOR RASPBERRY PI
           push: true
           tags: ${{ steps.meta.outputs.tags }}
-          cache-from: type=local,src=/tmp/.buildx-cache
-          cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
+          cache-from: type=gha # Use GitHub Actions cache for Docker layers
+          cache-to: type=gha,mode=max # Save Docker layers to GitHub Actions cache
 
-      - name: 🧹 Move cache
-        run: |
-          rm -rf /tmp/.buildx-cache
-          mv /tmp/.buildx-cache-new /tmp/.buildx-cache
+      # Removed the manual cache move step as type=gha handles it automatically
