@@ -28,5 +28,3 @@ EXPOSE 80
 
 # Start nginx
 CMD ["nginx", "-g", "daemon off;"]
-
-outputs: type=oci,dest=/tmp/image.tar
