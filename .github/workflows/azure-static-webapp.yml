@@ -9,6 +9,10 @@ on:
     branches:
       - main
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: read
   pull-requests: write
@@ -21,48 +25,43 @@ jobs:
     runs-on: ubuntu-latest
     name: Build and Deploy Job
     steps:
-      # === SETUP PHASE ===
       - name: 📥 Checkout Repository
         uses: actions/checkout@v4
         with:
           submodules: true
           lfs: false
-          persist-credentials: false
-          
-      - name: 🧹 Clean Git Config
-        run: |
-          git config --local --unset-all http.https://github.com/.extraheader || true
 
-      - name: 💾 Cache Node Modules
-        uses: actions/cache@v3
+      - name: 🔧 Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          path: node_modules
-          key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-modules-
+          node-version: '18'  # or '20' - specify your Node version
+          cache: 'npm'  # Built-in npm caching
 
       - name: 📦 Install Dependencies
-        run: npm install
+        run: npm ci  # Use 'ci' instead of 'install' for faster, deterministic builds
 
       # === QUALITY & TESTING PHASE ===
       - name: 🔍 Lint Code
-        run: npm run lint || echo "Linting issues found"
+        run: npm run lint
+        continue-on-error: true  # Don't fail deployment for linting issues
       
-      - name: 🛡️ Security Scan
-        run: npm audit --audit-level=high
-        continue-on-error: true
-
-      - name: 🛠 Fix Vulnerabilities
-        run: npm audit fix
-        continue-on-error: true
-        
       - name: 🧪 Run Tests
-        run: npm test || echo "No tests found, continuing deployment"
+        run: npm test -- --coverage --watchAll=false
+        continue-on-error: true
+        env:
+          CI: true  # Ensures tests run in CI mode
+        
+      - name: 🛡️ Security Audit
+        run: |
+          npm audit --audit-level=moderate
+          npm audit fix --audit-level=moderate
         continue-on-error: true
         
       # === BUILD & DEPLOY PHASE ===
       - name: 🔨 Build Application
         run: npm run build
+        env:
+          NODE_ENV: production
           
       - name: 🚀 Deploy to Azure
         id: builddeploy
@@ -74,6 +73,7 @@ jobs:
           app_location: "/"
           api_location: ""
           output_location: "build"
+          skip_deploy_on_missing_secrets: true
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'

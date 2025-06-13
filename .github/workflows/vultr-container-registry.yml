@@ -1,11 +1,15 @@
+# Vultr Container Registry CI/CD Workflow
+# This workflow builds a Docker image, scans it for vulnerabilities,
+# and pushes it to the Vultr Container Registry upon a push to the main branch.
+
 name: Vultr Container Registry CI
 
 on:
   push:
     branches:
-      - main # or your main branch name
+      - main # or your primary branch name
 
-# Prevent multiple deployments running simultaneously
+# Prevent multiple workflow runs for the same branch from overlapping.
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
@@ -15,94 +19,94 @@ permissions:
   packages: write
 
 jobs:
-  push_to_vultr:
+  build_scan_and_push:
+    name: Build, Scan, and Push to Vultr Registry
     runs-on: ubuntu-latest
-    name: Push to Vultr Container Registry
     steps:
       - name: 📥 Checkout Repository
         uses: actions/checkout@v4
 
-      - name: 📅 Set up Docker Buildx
+      - name: 🔧 Set up Docker Buildx
+        id: buildx
         uses: docker/setup-buildx-action@v3
+        # This enables building multi-platform images (e.g., amd64, arm64).
 
-      # --- Start: Added for Node.js dependency caching ---
       - name: 📦 Cache Node.js modules
         uses: actions/cache@v4
         with:
-          path: ~/.npm # Default npm cache location
+          path: ~/.npm # The default directory for the npm cache.
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
-      # --- End: Added for Node.js dependency caching ---
 
-      - name: 🔍 Verify Dockerfile exists
-        run: |
-          if [ ! -f Dockerfile ]; then
-            echo "::error::Dockerfile not found in repository root"
-            exit 1
-          fi
-
-      - name: 🧪 Run basic checks
+      # This single step now handles all Node.js related tasks:
+      # installing dependencies, linting, testing, and building the app.
+      # This avoids running 'npm ci' multiple times.
+      - name: 🏗️ Install Dependencies & Build App
         run: |
           if [ -f package.json ]; then
-            npm ci # Install dependencies using cache from previous step
-            npm run lint || echo "Linting issues found"
-            npm test || echo "Tests failed but continuing"
+            npm ci
+            echo "--- Running Linter ---"
+            npm run lint || echo "::warning::Linting issues found, but continuing."
+            echo "--- Running Tests ---"
+            npm test || echo "::warning::Tests failed, but continuing."
+            echo "--- Building Production App ---"
+            NODE_ENV=production npm run build
+          else
+            echo "No package.json found, skipping Node.js build steps."
           fi
-        continue-on-error: true
-
-      - name: 🏗️ Build React App
-        run: |
-          npm ci
-          NODE_ENV=production npm run build
 
       - name: 📋 Generate Image Tags
         id: meta
         run: |
-          echo "tags=${{ secrets.VULTR_REGISTRY }}/my-react-app:latest,${{ secrets.VULTR_REGISTRY }}/my-react-app:${GITHUB_SHA::7}" >> $GITHUB_OUTPUT
+          # Creates two tags: 'latest' and one with the short commit SHA.
+          # Example: my-registry/my-app:latest, my-registry/my-app:123abc7
+          TAGS="${{ secrets.VULTR_REGISTRY }}/my-react-app:latest,${{ secrets.VULTR_REGISTRY }}/my-react-app:${GITHUB_SHA::7}"
+          echo "tags=${TAGS}" >> $GITHUB_OUTPUT
 
-      - name: 🔨 Build Docker Image (without pushing)
+      # This step builds a SINGLE platform image (amd64) and saves it as a local .tar file.
+      # This is an efficient way to create an artifact for vulnerability scanning
+      # without needing to push it to a registry first. This resolves the error.
+      - name: 🔨 Build Image for Scanning (Single Platform)
         uses: docker/build-push-action@v5
         with:
           context: .
-          platforms: linux/amd64,linux/arm64/v8
+          platforms: linux/amd64 # Build only for the runner's architecture for the scan
           push: false
           tags: ${{ steps.meta.outputs.tags }}
+          outputs: type=docker,dest=/tmp/image.tar # Output as a tar file for Trivy
           cache-from: type=gha
           cache-to: type=gha,mode=max
-          outputs: type=docker,dest=/tmp/image.tar
 
-      - name: 🔒 Scan Docker image for vulnerabilities
-        uses: aquasecurity/trivy-action@master
+      - name: 🔒 Scan Image for Vulnerabilities with Trivy
+        uses: aquasecurity/trivy-action@0.24.0 # Pinned to a specific version for stability
         with:
-          input: /tmp/image.tar
+          input: /tmp/image.tar # Scan the tar file created in the previous step
           format: 'table'
-          exit-code: '1'  # Fail pipeline if vulnerabilities found
+          exit-code: '1' # Fail the workflow if CRITICAL or HIGH vulnerabilities are found.
           ignore-unfixed: true
+          vuln-type: 'os,library'
           severity: 'CRITICAL,HIGH'
 
-      - name: 🔓 Login to Vultr Registry
-        if: success()  # Only login if vulnerability scan passes
+      # The login step will only run if the Trivy scan above succeeds.
+      - name: 🔓 Login to Vultr Container Registry
+        if: success()
         uses: docker/login-action@v3
         with:
           registry: ${{ secrets.VULTR_REGISTRY }}
           username: ${{ secrets.VULTR_USER }}
           password: ${{ secrets.VULTR_API_KEY }}
 
-      - name: Build and push
+      # This final step builds the MULTI-PLATFORM image again, but this time pushes it
+      # to the Vultr registry. The Docker layer cache makes this second build very fast.
+      # This step only runs if the login (and by extension, the scan) was successful.
+      - name: 🚀 Build and Push Multi-Platform Image
+        if: success()
         uses: docker/build-push-action@v5
         with:
           context: .
-          platforms: linux/amd64,linux/arm64/v8
-          push: true
+          platforms: linux/amd64,linux/arm64 # Define all target platforms here
+          push: true # Push the image to the registry
           tags: ${{ steps.meta.outputs.tags }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
-
-      - name: Build for scanning (single platform)
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          platforms: linux/amd64  # Single platform for scanning
-          push: false
-          outputs: type=docker,dest=/tmp/image.tar
