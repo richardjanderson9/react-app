@@ -59,6 +59,11 @@ jobs:
         run: |
           echo "tags=${{ secrets.VULTR_REGISTRY }}/my-react-app:latest,${{ secrets.VULTR_REGISTRY }}/my-react-app:${GITHUB_SHA::7}" >> $GITHUB_OUTPUT
 
+      - name: 🏗️ Build React App
+        run: |
+          npm ci
+          npm run build
+
       - name: 🔨 Build and Push Docker Image
         uses: docker/build-push-action@v5
         with:

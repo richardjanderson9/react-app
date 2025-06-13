@@ -17,9 +17,14 @@ RUN npm run build
 # Production image
 FROM nginx:alpine
 
-# Adjust Nginx configuration to run as the non-root user (if necessary, typically Nginx alpine handles this)
-# Note: Default nginx:alpine config usually runs as nginx user, but explicitly setting USER is good practice.
-# If you have custom Nginx config, ensure its worker_processes run as 'nginx' or the user you define.
+# Copy built application to Nginx html directory
+COPY build/ /usr/share/nginx/html/
+
+# Copy custom Nginx configuration
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+# Expose port 80
+EXPOSE 80
 
 # Start nginx
 CMD ["nginx", "-g", "daemon off;"]
