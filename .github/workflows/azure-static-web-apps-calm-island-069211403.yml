@@ -51,6 +51,10 @@ jobs:
       - name: 🛡️ Security Scan
         run: npm audit --audit-level=high
         continue-on-error: true
+
+      - name: 🛠 Fix Vulnerabilities
+        run: npm audit fix
+        continue-on-error: true
         
       - name: 🧪 Run Tests
         run: npm test || echo "No tests found, continuing deployment"

@@ -2,8 +2,8 @@
   Path: src/assets/js/browserChecks/fingerprintChecks.jsx
   Description: Performs browser fingerprinting checks.
   Author: Richard Anderson
-  Last Updated: 08-June-2025
-  Version: 1.0.1
+  Last Updated: 13-June-2025
+  Version: 1.0.2
 */
 
 // Import may be blocked by ad blockers or privacy browsers (Brave/Firefox).
@@ -26,6 +26,12 @@ const fingerprintChecks = async () => {
     console.error('FingerprintJS error:', error);
     return false;
   }
+};
+
+const browserChecks = async () => {
+  const urlCheckResult = urlChecks();
+  const fingerprintCheckResult = await fingerprintChecks();
+  return urlCheckResult && fingerprintCheckResult;
 };
 
 export default fingerprintChecks;
