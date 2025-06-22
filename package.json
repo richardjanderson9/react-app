@@ -1,7 +1,8 @@
 {
   "name": "react-app",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "private": true,
+  "type": "module",
   "description": "A simple React application.",
   "author": {
     "name": "Richard Anderson",
@@ -39,11 +40,11 @@
     "eslint-config-react-app": "^7.0.1",
     "husky": "^9.1.7",
     "vite": "^6.3.5",
-    "vitest": "^3.2.3"
+    "vitest": "^3.2.4"
   },
   "engines": {
     "node": ">=22.15.0",
-    "npm": ">=10.9.2"
+    "npm": ">=11.4.2"
   },
   "overrides": {
     "nth-check": "^2.1.1",
