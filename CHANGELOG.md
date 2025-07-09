@@ -5,6 +5,34 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.5.0] - 2025-07-09
+
+### Added
+- Dockerfile for containerized builds and deployment
+- Nginx configuration for production deployments
+- GitHub Actions workflow for Vultr Container Registry CI/CD
+- Improved Azure Static Web Apps CI/CD workflow
+- New browser fingerprinting checks using FingerprintJS
+- JSON configuration for allowed domains and URLs
+- ErrorBoundary component for robust error handling
+- Enhanced UI with version, author, and repository info from package.json
+
+### Changed
+- Updated Vite config for custom build directory and improved dev server settings
+- Refactored browser compatibility checks for easier overrides and future expansion
+- Moved UI logic to a dedicated `userInterface.jsx` component
+- Updated project structure documentation in README.md
+- Improved CSS for UI consistency
+
+### Fixed
+- Corrected import paths and file extensions throughout the codebase
+- Fixed issues with missing or incorrect repository URLs in the UI
+- Improved error handling for browser and domain checks
+
+### Security
+- Maintained strict security policy and updated supported versions in SECURITY.md
+- Added security-focused Nginx and CI/CD configurations
+
 ## [0.4.0] - 2025-06-13
 
 ### Added
