@@ -1,17 +1,16 @@
 /*
-  Path: src/assets/js/userInterface.js.
+  Path: src/assets/js/userInterface.jsx
   Description: UI components separated from main App logic.
   Author: Richard Anderson.
-  Last Updated: 08-June-2025.
-  Version: 1.0.3.
-  Note: Contains the UI design moved from App.js
+  Last Updated: 09-July-2025.
+  Version: 1.0.4.
+  Note: Contains the UI design moved from App.js. Updated for clarity and streamlined checks.
 */
 
-import React from 'react'; // React Import!
 import logo from '../media/logo.svg'; // Adjusted path for logo
 import '../css/index.css'; // CSS Import
 import '../css/userInterface.css'; // Specific UI styles
-import packageJson from '../../../package.json'; // Package JSON Import!.
+import packageJson from '../../../package.json'; // Package JSON Import
 
 const UserInterface = () => {
   const repositoryUrl = packageJson?.repository?.url;
@@ -36,17 +35,16 @@ const UserInterface = () => {
             if (repositoryUrl) {
               window.open(repositoryUrl, "_blank");
             } else {
-              console.error("Cannot open link: Repository URL (packageJson.repository.url) is not defined or accessible.");
               alert("GitHub repository URL is not configured correctly. Please check package.json.");
             }
           }}
-          disabled={!repositoryUrl} // Disable button if URL is not available
+          disabled={!repositoryUrl}
         >
           View Github!
         </button>
         {!repositoryUrl && (
           <p style={{ color: 'red', marginTop: '10px' }}>
-            Note: GitHub link is disabled because the repository URL (url) is missing in package.json.
+            Note: GitHub link is disabled because the repository URL is missing in package.json.
           </p>
         )}
       </header>

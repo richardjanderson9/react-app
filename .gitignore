@@ -1,45 +1,46 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# dependencies
+# Node dependencies
 /node_modules
 /.pnp
 .pnp.js
 
-# testing
+# Build output
+/build
+/dist
+
+# Test output
 /coverage
 **/__tests__/*
 **/*.test.*
 **/*.spec.*
-!src/**/*.test.js
-!src/**/*.spec.js
 **/test/*
 **/tests/*
 !src/test
 !src/tests
 
-# production
-/build
-/dist
-
-# sync testing
+# Temporary & sync files
 /sync-test
 temp.json
 
-# misc
+# Miscellaneous
 .DS_Store
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
 
-# logs
+# Logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Azure specific
-.azure/
+# Environment files
+.env
+.env.*
+!.env.example
+
+# VS Code
 .vscode/settings.json
+
+# Cloud provider configs
+.azure/
 local.settings.json
 appsettings.*.json
 *.publishsettings
@@ -48,7 +49,6 @@ PublishProfiles/
 azureauth.json
 azure-pipelines*.yml
 
-# AWS specific
 .aws/
 aws-config.json
 aws-credentials.json
@@ -63,7 +63,24 @@ sam.yml
 credentials.csv
 accessKeys.csv
 
-# GitHub Actions specific
+.gcp/
+app.yaml
+dispatch.yaml
+cron.yaml
+.gcloudignore
+*-credentials.json
+*-service-account.json
+gcloud-config/
+
+# Firebase
+.firebase/
+firebase-debug.log
+firestore-debug.log
+ui-debug.log
+.firebaserc
+firebase.json
+
+# GitHub Actions local/dev
 .github/.env
 .act
 .actrc
@@ -73,34 +90,4 @@ workflow-artifacts/
 .github/act/
 .github-actions-local/
 
-# GCP specific
-.gcp/
-app.yaml
-dispatch.yaml
-cron.yaml
-.gcloudignore
-*-credentials.json
-*-service-account.json
-gcloud-config/
-.firebase/
-firebase-debug.log
-firestore-debug.log
-ui-debug.log
-.firebaserc
-firebase.json
-
-# Environment variables
-.env
-.env.azure.*
-.env.aws.*
-.env.gcp.*
-.env.production.azure
-.env.production.aws
-.env.production.gcp
-.env.development.azure
-.env.development.aws
-.env.development.gcp
-.env.staging.azure
-.env.staging.aws
-.env.staging.gcp
-.npmcheckrc
+# npm

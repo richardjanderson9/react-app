@@ -5,6 +5,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.6.0] - 2025-07-09
+
+### Changed
+- Streamlined project by removing all browser, URL, and fingerprint checks.
+- Removed unused configuration files and related logic.
+- Simplified `App` to render only the `UserInterface` component.
+- Cleaned up and compressed CSS for UI.
+- Updated README to show only folder structure.
+- Removed all references to unused or deprecated files.
+- Updated all version and date headers in changed files.
+
+### Fixed
+- Resolved issues with missing or broken imports due to removed checks.
+- Fixed blank/white screen by removing references to non-existent files.
+
+### Note
+- This is the final version of the project. No further updates or support will be provided.
+
 ## [0.5.0] - 2025-07-09
 
 ### Added

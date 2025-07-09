@@ -1,6 +1,6 @@
 {
-  "name": "react-app",
-  "version": "0.5.1",
+  "name": "react-template",
+  "version": "0.6.0",
   "private": true,
   "type": "module",
   "description": "A simple React application.",
@@ -61,5 +61,6 @@
     "hooks": {
       "pre-commit": "npm run lint && npm run test"
     }
-  }
+  },
+  "template": true
 }
