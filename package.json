@@ -1,6 +1,6 @@
 {
   "name": "react-template",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "private": true,
   "type": "module",
   "description": "A simple React application.",
@@ -10,12 +10,12 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@fingerprintjs/fingerprintjs": "^4.6.2",
-    "@testing-library/jest-dom": "^6.6.3",
+    "@fingerprintjs/fingerprintjs": "^5.0.1",
+    "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.0",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0",
-    "web-vitals": "^5.0.3"
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "web-vitals": "^5.1.0"
   },
   "scripts": {
     "start": "vite",
@@ -36,11 +36,11 @@
   },
   "homepage": "http://localhost:3000",
   "devDependencies": {
-    "@vitejs/plugin-react": "^4.6.0",
+    "@vitejs/plugin-react": "^5.1.0",
     "eslint-config-react-app": "^7.0.1",
     "husky": "^9.1.7",
-    "vite": "^7.0.3",
-    "vitest": "^3.2.4"
+    "vite": "^7.1.12",
+    "vitest": "^4.0.4"
   },
   "engines": {
     "node": ">=22.15.0",

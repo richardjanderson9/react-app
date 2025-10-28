@@ -72,7 +72,7 @@ npm start
 - Replace project-specific values in [package.json](http://_vscodecontentref_/1) (e.g., [name](http://_vscodecontentref_/2), [repository](http://_vscodecontentref_/3), [author](http://_vscodecontentref_/4)) with placeholders or generic values.
 - Update [.env](http://_vscodecontentref_/5) to include only example variables:
   ```env
-  // filepath: /home/pi/vscode/react-app/.env
+  // filepath: /react-app/.env
   VITE_APP_NAME=YourAppName
   VITE_APP_VERSION=0.0.1
   ```
@@ -83,7 +83,7 @@ Include a `CONTRIBUTING.md` file to guide contributors on how to contribute to t
 ### 5. **Add a `template.config.yml` File**
 Create a `template.config.yml` file to customize the template behavior:
 ```yml
-// filepath: /home/pi/vscode/react-app/.github/template.config.yml
+// filepath: /react-app/.github/template.config.yml
 name: React App Template
 description: A modern React application template built with Vite.
 ```
