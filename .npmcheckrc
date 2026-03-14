@@ -2,9 +2,12 @@
   "depcheck": {
     "ignoreMatches": [
       "@testing-library/react",
+      "@testing-library/jest-dom",
       "eslint-config-react-app",
       "husky",
-      "@fingerprintjs/fingerprintjs"
+      "@fingerprintjs/fingerprintjs",
+      "npm-check",
+      "web-vitals"
     ]
   }
 }
