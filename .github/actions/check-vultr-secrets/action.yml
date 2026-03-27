@@ -1,7 +1,5 @@
-name: Check Vultr Secrets
-
+name: 'Check Vultr Secrets'
 description: 'Test action to verify Vultr secrets are present.'
-
 runs:
   using: 'composite'
   steps:
