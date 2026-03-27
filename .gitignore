@@ -1,16 +1,21 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# Node dependencies
-/node_modules
+# -----------------------------
+# Node & Package Manager Files
+# -----------------------------
+node_modules/
 /.pnp
 .pnp.js
 
-# Build output
-/build
-/dist
+# -----------------------------
+# Build & Output Directories
+# -----------------------------
+build/
+dist/
 
-# Test output
-/coverage
+# -----------------------------
+# Test Output & Test Files
+# -----------------------------
+coverage/
 **/__tests__/*
 **/*.test.*
 **/*.spec.*
@@ -19,27 +24,36 @@
 !src/test
 !src/tests
 
-# Temporary & sync files
-/sync-test
+# -----------------------------
+# Temporary & Sync Files
+# -----------------------------
+sync-test/
 temp.json
 
-# Miscellaneous
-.DS_Store
-
+# -----------------------------
 # Logs
+# -----------------------------
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Environment files
+# -----------------------------
+# Environment Files
+# -----------------------------
 .env
 .env.*
 !.env.example
 
-# VS Code
+# -----------------------------
+# Editor & OS Files
+# -----------------------------
+.DS_Store
 .vscode/settings.json
 
-# Cloud provider configs
+# -----------------------------
+# Cloud Provider Configs
+# -----------------------------
+# Azure
 .azure/
 local.settings.json
 appsettings.*.json
@@ -48,7 +62,7 @@ PublishProfiles/
 *.pubxml
 azureauth.json
 azure-pipelines*.yml
-
+# AWS
 .aws/
 aws-config.json
 aws-credentials.json
@@ -62,7 +76,7 @@ sam.yml
 *.pem
 credentials.csv
 accessKeys.csv
-
+# GCP
 .gcp/
 app.yaml
 dispatch.yaml
@@ -71,7 +85,6 @@ cron.yaml
 *-credentials.json
 *-service-account.json
 gcloud-config/
-
 # Firebase
 .firebase/
 firebase-debug.log
@@ -80,7 +93,9 @@ ui-debug.log
 .firebaserc
 firebase.json
 
-# GitHub Actions local/dev
+# -----------------------------
+# GitHub Actions Local/Dev
+# -----------------------------
 .github/.env
 .act
 .actrc
@@ -90,4 +105,31 @@ workflow-artifacts/
 .github/act/
 .github-actions-local/
 
-# npm
+# -----------------------------
+# Miscellaneous
+# -----------------------------
+*test*
+
+# -----------------------------
+# Docker & Cloud/IaaS
+# -----------------------------
+# Docker
+docker-compose.yml
+docker-compose.*.yml
+Dockerfile.*
+.dockerignore
+.docker/
+docker-data/
+docker-volumes/
+docker-logs/
+
+# Cloudflare (WAF, Pages, Workers, etc.)
+.cloudflared/
+cloudflare.log
+cloudflare.env
+wrangler.toml
+wrangler-config.toml
+cf-*
+workers-site/
+dist-worker/
+pages-functions/
