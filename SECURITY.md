@@ -4,8 +4,8 @@
 
 | Version      | Supported          |
 | ------------ | ------------------ |
-| 0.8.x        | :white_check_mark: |
-| < 0.8.0      | :x:                |
+| 0.9.x        | :white_check_mark: |
+| < 0.9.0      | :x:                |
 
 ## Security Update Process
 

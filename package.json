@@ -1,20 +1,21 @@
 {
-  "name": "react-template",
-  "version": "0.8.1",
+  "name": "react-website",
+  "version": "0.9.0",
   "private": true,
   "type": "module",
-  "description": "A simple React application.",
+  "description": "My personal website built with React, Vite, and Tailwind CSS. It showcases my portfolio, blog, and contact information. The website is designed to be fast, responsive, and user-friendly, providing visitors with an engaging experience. It is configured to sit behind a Cloudflare Proxy/WAF for enhanced security and performance. ",
   "author": {
     "name": "Richard Anderson",
     "linkedin": "https://www.linkedin.com/in/richardjanderson9"
   },
   "license": "MIT",
   "dependencies": {
-    "@fingerprintjs/fingerprintjs": "^5.1.0",
+    "@fingerprintjs/fingerprintjs": "^5.2.0",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4"
+    "npm-check": "^6.0.1",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7"
   },
   "scripts": {
     "start": "vite",
@@ -28,10 +29,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/richardjanderson9/react-app"
+    "url": "https://github.com/richardjanderson9/react-website"
   },
   "bugs": {
-    "url": "https://github.com/richardjanderson9/react-app/issues"
+    "url": "https://github.com/richardjanderson9/react-website/issues"
   },
   "homepage": "http://localhost:3000",
   "devDependencies": {
@@ -39,7 +40,7 @@
     "eslint-config-react-app": "^7.0.1",
     "husky": "^9.1.7",
     "vite": "^8.0.0",
-    "vitest": "^4.1.0"
+    "vitest": "^4.1.9"
   },
   "engines": {
     "node": ">=22.15.0",
