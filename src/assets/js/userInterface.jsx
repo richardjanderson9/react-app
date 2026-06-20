@@ -1,53 +1,27 @@
 /*
   Path: src/assets/js/userInterface.jsx
-  Description: UI components separated from main App logic.
+  Description: Coming soon page for the personal website.
   Author: Richard Anderson.
-  Last Updated: 09-July-2025.
-  Version: 1.0.4.
-  Note: Contains the UI design moved from App.js. Updated for clarity and streamlined checks.
+  Last Updated: 20-June-2026.
+  Version: 2.0.0.
+  Note: Replaces the old template UI with a simple coming soon screen.
 */
 
-import logo from '../media/logo.svg'; // Adjusted path for logo
-import '../css/index.css'; // CSS Import
-import '../css/userInterface.css'; // Specific UI styles
-import packageJson from '../../../package.json'; // Package JSON Import
+// CSS Imports.
+import '../css/index.css';
+import '../css/userInterface.css';
 
 const UserInterface = () => {
-  const repositoryUrl = packageJson?.repository?.url;
-
-  // Main Render.
+  // Main Render — coming soon page.
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          <u>Welcome to the React App!</u>
-          <br />
-          Application Name: {packageJson?.name || 'N/A'}
-          <br />
-          Version: {packageJson?.version || 'N/A'}
-          <br />
-          Author: {packageJson?.author?.name || 'N/A'}
-        </p>
-        <button
-          className="App-button"
-          onClick={() => {
-            if (repositoryUrl) {
-              window.open(repositoryUrl, "_blank");
-            } else {
-              alert("GitHub repository URL is not configured correctly. Please check package.json.");
-            }
-          }}
-          disabled={!repositoryUrl}
-        >
-          View Github!
-        </button>
-        {!repositoryUrl && (
-          <p style={{ color: 'red', marginTop: '10px' }}>
-            Note: GitHub link is disabled because the repository URL is missing in package.json.
-          </p>
-        )}
-      </header>
+    <div className="coming-soon-wrapper">
+
+      {/* Page heading */}
+      <h1 className="coming-soon-heading">Coming Soon</h1>
+
+      {/* Subtext */}
+      <p className="coming-soon-sub">Something great is on its way. Check back later!</p>
+
     </div>
   );
 };

@@ -2,8 +2,8 @@
   Path: src/index.jsx
   Description: Entry point for the React application.
   Author: Richard Anderson.
-  Last Updated: 09-July-2025.
-  Version: 1.0.3.
+  Last Updated: 20-June-2026.
+  Version: 1.1.0.
   Note: This file contains both AI-generated (Copilot -- Claude 3.7) and manually added comments for code clarity.
 */
 

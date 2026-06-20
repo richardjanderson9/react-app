@@ -1,6 +1,6 @@
-# React App
+# Richard Anderson — Personal Website
 
-> A modern React application powered by Vite.
+> Personal website built with React and Vite. Sits behind a Cloudflare Proxy/WAF.
 
 ## Quick Start
 
@@ -27,17 +27,19 @@ public/     # Static files
 
 To deploy or use this project with Vultr Container Registry, set the following secrets in your deployment environment or CI/CD pipeline:
 
-- `VULTR_API_KEY` – Your Vultr API key
-- `VULTR_REGISTRY_URL` – The URL of your Vultr container registry (e.g., `us-east1.vultrcr.com`)
-- `VULTR_REGISTRY_NAME` – The name of your Vultr container registry (e.g., `my-registry`)
-- `VULTR_USER` – Your Vultr username (format: UUID, e.g., `xxxx-xxxx-xxxx-xxxx`)
+| Secret | Description |
+|---|---|
+| `VULTR_API_KEY` | Your Vultr API key |
+| `VULTR_REGISTRY_URL` | Registry URL (e.g. `us-east1.vultrcr.com`) |
+| `VULTR_REGISTRY_NAME` | Registry name |
+| `VULTR_USER` | Vultr username (UUID format) |
 
-Ensure these secrets are securely stored and not committed to version control.
+Do not commit these values to version control.
 
 ## Security
 
-See [SECURITY.md](SECURITY.md) for security policy and supported versions.
+See [SECURITY.md](SECURITY.md) for the security policy and supported versions.
 
 ## License
 
-MIT – see LICENSE
+MIT — see [LICENSE](LICENSE)

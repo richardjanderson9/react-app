@@ -1,3 +1,12 @@
+/*
+  Path: src/assets/js/errorBoundary.jsx
+  Description: Error boundary component to catch and display runtime errors gracefully.
+  Author: Richard Anderson.
+  Last Updated: 20-June-2026.
+  Version: 1.0.1.
+  Note: Wraps child components and renders a fallback UI on uncaught errors.
+*/
+
 import React, { Component } from 'react';
 
 class ErrorBoundary extends Component {
